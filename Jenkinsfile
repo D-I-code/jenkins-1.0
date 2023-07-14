@@ -3,19 +3,20 @@ pipeline {
 
     stages {
          stage('Init') {
-            steps {
+            steps{
                 sh 'docker rm -f $(docker ps -qa) || true'
             }
         }
         stage('Build') {
-            steps {
+            steps{
                 sh 'docker build -t myapp .'
             }
         }
 
         stage('Deploy') {
-            steps {
+            steps{
                 sh 'docker run -d -p 80:5500 --name myapp myapp:latest'
             }
         }
     }
+}
